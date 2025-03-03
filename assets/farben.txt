@@ -1,0 +1,4 @@
+Farbmodus:	RGB 24 Bit
+RGB Profiel:	sRGB IEC 61966-2.1
+R: 204	G: 204	B: 51
+HEX: CC CC 33
