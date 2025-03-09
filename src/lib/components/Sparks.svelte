@@ -6,8 +6,7 @@
 
 {#if isSparksVisible() && isModernBrowser}
 	<video transition:fade autoplay muted loop>
-		<source src="/sparks.webm" type="video/webm" />
-		Your browser does not support the video tag.
+		<source src="/sparks-m.webm" type="video/webm" />
 	</video>
 {/if}
 

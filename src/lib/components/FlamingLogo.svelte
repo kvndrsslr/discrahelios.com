@@ -48,8 +48,7 @@
 		{#if isModernBrowser}
 			<div class="video-container">
 				<video autoplay muted loop>
-					<source src="/flames.webm" type="video/webm" />
-					Your browser does not support the video tag.
+					<source src="/flames-xs.webm" type="video/webm" />
 				</video>
 			</div>
 		{/if}

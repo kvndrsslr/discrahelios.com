@@ -4,6 +4,7 @@
 	import Icon from '$lib/components/Icon.svelte';
 	import { scrollY } from 'svelte/reactivity/window';
 	import Sparks from '$lib/components/Sparks.svelte';
+	import FlamingLogo from '$lib/components/FlamingLogo.svelte';
 
 	let { children } = $props();
 </script>
@@ -12,6 +13,13 @@
 <div class={['logo', { shrinkNav: (scrollY.current ?? 0) > 100 }]}>
 	<Icon icon="logo" --width="100%" />
 </div> -->
+
+<div class="logo backdrop">
+	<FlamingLogo helperBackdrop />
+</div>
+<div class="logo blend">
+	<FlamingLogo />
+</div>
 
 <section class="content">
 	{@render children()}
@@ -35,6 +43,11 @@
 		--fg0: #facf61;
 	}
 
+	:global(html) {
+		scroll-snap-type: y mandatory;
+		scroll-behavior: smooth;
+	}
+
 	:global(body) {
 		margin: 0;
 		padding: 0;
@@ -54,6 +67,21 @@
 	}
 
 	.logo {
+		width: 350px;
+		position: fixed;
+		top: 15px;
+		left: 30px;
+		z-index: 5;
+		&.blend {
+			mix-blend-mode: screen;
+		}
+		&.backdrop {
+			filter: drop-shadow(0 0 5px #10050977) drop-shadow(0 0 2px #100509aa)
+				drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
+		}
+	}
+
+	.logo-old {
 		position: fixed;
 		z-index: 5;
 		fill: #cccc33;
