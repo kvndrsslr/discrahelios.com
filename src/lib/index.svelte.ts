@@ -1,5 +1,6 @@
 import type { Action } from 'svelte/action';
 import { scrollY } from 'svelte/reactivity/window';
+import { browser } from '$app/environment';
 
 // place files you want to import through the `$lib` alias in this folder.
 export const scrollAction: Action<
@@ -25,3 +26,8 @@ export const scrollAction: Action<
 		}
 	});
 };
+
+export const isModernBrowser =
+	browser &&
+	(window.navigator.userAgent.includes('Firefox/') ||
+		window.navigator.userAgent.includes('Chrome/'));

@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { isSparksVisible } from '$lib/components/SparksStore.svelte';
+	import { isModernBrowser } from '$lib/index.svelte';
 	import { fade } from 'svelte/transition';
 </script>
 
-{#if isSparksVisible()}
+{#if isSparksVisible() && isModernBrowser}
 	<video transition:fade autoplay muted loop>
 		<source src="/sparks.webm" type="video/webm" />
 		Your browser does not support the video tag.
