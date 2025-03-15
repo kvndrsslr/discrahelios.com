@@ -31,7 +31,7 @@
 	</div>
 	<div class={['slide', 'shadow']}></div>
 </section>
-<section class="foo">Hello World</section>
+<section class="foo"><a id="show"></a></section>
 <section class="foo">Hello World</section>
 <section class="foo">Hello World</section>
 <section class="foo">Hello World</section>

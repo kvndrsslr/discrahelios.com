@@ -21,6 +21,25 @@
 	<FlamingLogo />
 </div>
 
+<nav>
+	<a href="/#test">
+		<Icon icon="show" --height="40px" />
+		Show
+	</a>
+	<a href="/#">
+		<Icon icon="gallery" --height="40px" />
+		Galerie
+	</a>
+	<a href="/#">
+		<Icon icon="bookings" --height="40px" />
+		Buchen
+	</a>
+	<a href="/#">
+		<Icon icon="about-us" --height="40px" />
+		&Uuml;ber uns
+	</a>
+</nav>
+
 <section class="content">
 	{@render children()}
 </section>
@@ -57,6 +76,35 @@
 		// background-image: url('/hero1.webp');
 		// background-size: cover;
 		// background-attachment: fixed;
+	}
+
+	nav {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		z-index: 100;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		gap: 35px;
+		filter: drop-shadow(0 0 2px #10050977) drop-shadow(0 0 2px #100509aa)
+			drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
+
+		a {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			gap: 5px;
+			text-decoration: none;
+			color: var(--fg1);
+			font-size: 1rem;
+			transition: color 0.5s ease-in-out;
+			&:hover {
+				color: var(--fg0);
+			}
+		}
 	}
 
 	section.content {
