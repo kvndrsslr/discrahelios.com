@@ -1,6 +1,8 @@
-# Content
+# Todo
 
-## Section 1: Hero
+## Content
+
+### Section 1: Hero
 
 3 Bilder + Sprüche
 
@@ -11,47 +13,47 @@
 * "Feuer, Faszination und eine Prise Magie"
   * Sasha Lycoflamme Publikum
 
-## Section 2: Show (Showkonzept)
+### Section 2: Show (Showkonzept)
 
 * 6 Konzepte als Kacheln mit hover Text oder side-by-side
 * Am besten mit Bildern / Icons und wenig Text.
 * Zur not nur Text in Kacheln organisiert.
 
-### Konzept 1: Hochzeiten und private Feiern
+#### Konzept 1: Hochzeiten und private Feiern
 
 * Show zu Ihren Lieblingsliedern
 * inkl. Herzflammen Bühnenbild als Fotomotiv für Ihren schönsten Tag
 * Foto: Hochzeitspaar Herzflamme
 
-### Konzept 2: Firmenfeiern
+#### Konzept 2: Firmenfeiern
 
 * lockere Show, um ihre Erfolge ins Rampenlicht zu stellen
 * Individuelles Bühnenbild und auf Sie zugeschnittene Moderation
 * Foto: Figurenseil und Poifoto (muss noch gemacht werden)
 
-### Konzept 3: Mittelaltermärkte
+#### Konzept 3: Mittelaltermärkte
 
 * passende Gewandung und Einbezug des Publikums
 * kombinierbar mit Walking Act für ein ganztägiges Programm
 * Foto: Pestdoktor
 
-### Konzept 4: Stadtfeste
+#### Konzept 4: Stadtfeste
 
 * Technik und Flammeneffekte angepasst an Ihre Eventgröße
 * Foto: Kohlepoi
 
-### Konzept 5: Kindergärten
+#### Konzept 5: Kindergärten
 
 * angepasste kürzere Show, um auch die kleinsten Zuschauer zu begeistern
 * LED Show komplett ohne Feuer ist ebenfalls möglich
 * Foto: LED-Einhorn (muss noch gemacht werden)
 
-### Konzept 6: Individuelles Konzept
+#### Konzept 6: Individuelles Konzept
 
 * Noch nichts gefunden? Sprechen Sie uns direkt an und wir planen Ihr perfektes Event!
 * Foto: Robert als Harlekin mit Sense
 
-## Section 3: Galerie
+### Section 3: Galerie
 
 * Bilder und Videos
 * Captions
@@ -63,7 +65,7 @@
 * minimale Schnittstelle zur Ermittlung welche Bilder geladen werden sollen
 * Mit integrieren: Social Links
 
-## Section 4: Buchen
+### Section 4: Buchen
 
 * Formular?
 * Links zu den Agenturen
@@ -71,11 +73,21 @@
   * bessere Icons
 * Links zu Agenturen
 
-## Section 5: Über uns
+### Section 5: Über uns
 
 * Füllermaterial
 * Hier Referenzen einbinden
 
-## Impressum / Datenschutz
+### Impressum / Datenschutz
 
 * wahrscheinlich kein GDPR popup notwendig
+
+## SEO Prios
+
+* Technical:
+  * First Contentful Paint
+  * Ladezeit generell
+* Texte
+  * Lokaler Bezug -> Leipzig, Sachsen, usw. im Text einbauen
+  * Unklar, ob kürzere oder längere Texte hilfreich sind -> für Kunden sicher kürzere
+* Meta Tags?
