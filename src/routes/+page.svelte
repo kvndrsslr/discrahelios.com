@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { hideSparks, showSparks } from '$lib/components/SparksStore.svelte';
-	import { scrollAction } from '$lib/index.svelte';
+	import { scrollAction, intersect, type IntersectOptions } from '$lib/index.svelte';
 	let currentSlide = $state(0);
 	$effect(() => {
 		hideSparks();
@@ -8,6 +8,10 @@
 			currentSlide = (currentSlide + 1) % 3;
 		}, 5000);
 	});
+	const intersectOptions: IntersectOptions = {
+		threshold: 1.0,
+		callback(entry) {}
+	};
 </script>
 
 <section
@@ -31,7 +35,7 @@
 	</div>
 	<div class={['slide', 'shadow']}></div>
 </section>
-<section class="foo"><a id="show"></a></section>
+<section id="show" class="foo"></section>
 <section class="foo">Hello World</section>
 <section class="foo">Hello World</section>
 <section class="foo">Hello World</section>

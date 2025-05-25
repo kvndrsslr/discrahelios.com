@@ -22,7 +22,7 @@
 </div>
 
 <nav>
-	<a href="/#test">
+	<a href="/#show">
 		<Icon icon="show" --height="40px" />
 		Show
 	</a>
@@ -63,8 +63,8 @@
 	}
 
 	:global(html) {
-		scroll-snap-type: y mandatory;
-		scroll-behavior: smooth;
+		scroll-snap-type: y proximity;
+		// scroll-behavior: smooth;
 	}
 
 	:global(body) {
