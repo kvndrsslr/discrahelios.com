@@ -1,14 +1,9 @@
 <script lang="ts">
-	import { isSparksVisible } from '$lib/components/SparksStore.svelte';
-	import { isModernBrowser } from '$lib/index.svelte';
-	import { fade } from 'svelte/transition';
 </script>
 
-{#if isSparksVisible() && isModernBrowser}
-	<video transition:fade autoplay muted loop>
-		<source src="/sparks-m.webm" type="video/webm" />
-	</video>
-{/if}
+<video autoplay muted loop>
+	<source src="/sparks-m.webm" type="video/webm" />
+</video>
 
 <style lang="scss">
 	video {
@@ -23,6 +18,27 @@
 		min-width: 720px;
 		height: auto;
 		z-index: 20;
+		/* the video should blend on top of the background but below the content */
+		mix-blend-mode: screen;
 		opacity: 0.6;
+		animation-name: rotateAnimation;
+		animation-duration: 1ms; /* Firefox requires this to apply the animation */
+		animation-direction: alternate;
+		animation-timeline: scroll(block root);
+		animation-range: 0dvh 100dvh;
+	}
+
+	@keyframes rotateAnimation {
+		0% {
+			opacity: 0;
+		}
+
+		50% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 0.6;
+		}
 	}
 </style>

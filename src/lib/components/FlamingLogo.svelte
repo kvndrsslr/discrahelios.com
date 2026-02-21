@@ -1,11 +1,5 @@
-<script>
-	import { isModernBrowser } from '$lib/index.svelte';
-	import { fade } from 'svelte/transition';
-	let { helperBackdrop = false } = $props();
-	let isModernBrowserClientOnly = $state(false);
-	$effect(() => {
-		isModernBrowserClientOnly = isModernBrowser;
-	});
+<script lang="ts">
+	let videoReadyState = $state(0);
 </script>
 
 {#snippet logoPath()}
@@ -32,61 +26,56 @@
 	/>
 {/snippet}
 
-{#if helperBackdrop}
+<svg class="clip-svg" xmlns="http://www.w3.org/2000/svg">
+	<defs>
+		<clipPath
+			id="flaming-logo-clip"
+			clipPathUnits="objectBoundingBox"
+			transform="scale(0.00041494, 0.00049529)"
+		>
+			{@render logoPath()}
+		</clipPath>
+	</defs>
+</svg>
+<div class="logo-container">
 	<svg
-		transition:fade={{ duration: 700 }}
-		viewBox="-200 -200 2810 2419"
-		preserveAspectRatio="xMidYMid slice"
+		viewBox="0 0 2410 2019"
 		xmlns="http://www.w3.org/2000/svg"
+		class="backdrop"
+		preserveAspectRatio="xMidYMid slice"
 	>
-		<g fill="black">
+		<g fill="var(--fg1)">
 			{@render logoPath()}
 		</g>
 	</svg>
-{:else}
-	<div class="logo-container">
-		{#if isModernBrowser}
-			<div class="video-container">
-				<video autoplay muted loop>
-					<source src="/flames-xs.webm" type="video/webm" />
-				</video>
-			</div>
-		{/if}
-		{#if !isModernBrowserClientOnly}
-			<svg
-				transition:fade={{ duration: 700 }}
-				viewBox="-200 -200 2810 2419"
-				preserveAspectRatio="xMidYMid slice"
-				xmlns="http://www.w3.org/2000/svg"
-			>
-				<g fill="var(--fg1)">
-					{@render logoPath()}
-				</g>
-			</svg>
-		{/if}
-		<svg
-			viewBox="-200 -200 2810 2419"
-			preserveAspectRatio="xMidYMid slice"
-			xmlns="http://www.w3.org/2000/svg"
+	<object type="video" aria-label="Discrahelios Logo" class:loaded={videoReadyState >= 4}>
+		<video
+			bind:readyState={videoReadyState}
+			autoplay
+			muted
+			loop
+			onloadstart={(ev) => (ev.currentTarget.playbackRate = 2)}
 		>
-			<defs>
-				<mask id="mask" x="-200" y="-200" width="2810" height="2419">
-					<rect x="-200" y="-200" width="2810" height="2419" fill="white" />
-					{@render logoPath()}
-				</mask>
-			</defs>
-			<rect x="-200" y="-200" width="2810" height="2419" fill="black" mask="url(#mask)" />
-		</svg>
-	</div>
-{/if}
+			<source src="/flames-xs.webm" type="video/webm" />
+		</video>
+	</object>
+</div>
 
-<style>
+<style lang="scss">
+	.clip-svg {
+		display: block;
+		position: absolute;
+		height: 0;
+		width: 0;
+		overflow: hidden;
+		user-select: none;
+		pointer-events: none;
+	}
 	.logo-container {
 		display: grid;
 		place-content: stretch;
 		place-items: stretch;
-		width: var(--width);
-		height: var(--height);
+		aspect-ratio: 2410 / 2019;
 	}
 
 	.logo-container > * {
@@ -95,10 +84,26 @@
 		height: 100%;
 	}
 
-	.video-container {
-		padding: 5%;
-		width: 90%;
-		height: 90%;
+	.backdrop {
+		filter: drop-shadow(0 0 2px #100509aa) drop-shadow(0 0 2px #100509cc)
+			drop-shadow(0 0 1px #100509);
+
+		@media screen and (min-width: 768px) {
+			filter: drop-shadow(0 0 5px #10050977) drop-shadow(0 0 3px #100509aa)
+				drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
+		}
+	}
+
+	object {
+		display: block;
+		opacity: 0;
+		width: 100%;
+		height: 100%;
+		clip-path: url(#flaming-logo-clip);
+		transition: opacity 2s ease-in-out;
+		&.loaded {
+			opacity: 1;
+		}
 	}
 
 	video {

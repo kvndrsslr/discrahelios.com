@@ -7,20 +7,22 @@
 
 	type IconProps = {
 		icon: string;
-		[key: string]: any;
 	};
 
 	let { icon, ...rest }: IconProps = $props();
 
-	const iconPath = `../icons/${icon}.svg`;
-	const iconSvg = icons[iconPath];
-	if (!iconSvg) {
-		console.error(`Icon ${icon} not found`);
-	}
+	const iconPath = $derived(`../icons/${icon}.svg`);
+	const iconSvg = $derived(icons[iconPath]);
+	$effect(() => {
+		if (!iconSvg) {
+			console.error(`Icon ${icon} not found`);
+		}
+	});
 </script>
 
 {#if iconSvg}
 	<div {...rest}>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 		{@html iconSvg}
 	</div>
 {/if}

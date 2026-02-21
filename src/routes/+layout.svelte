@@ -2,47 +2,45 @@
 	import '@fontsource-variable/open-sans';
 	import '@fontsource-variable/recursive';
 	import Icon from '$lib/components/Icon.svelte';
-	import { scrollY } from 'svelte/reactivity/window';
 	import Sparks from '$lib/components/Sparks.svelte';
 	import FlamingLogo from '$lib/components/FlamingLogo.svelte';
+	import { scrollY } from 'svelte/reactivity/window';
+	import { resolve } from '$app/paths';
 
+	const showNavIcons = false;
 	let { children } = $props();
 </script>
 
-<!-- 
-<div class={['logo', { shrinkNav: (scrollY.current ?? 0) > 100 }]}>
-	<Icon icon="logo" --width="100%" />
-</div> -->
-
-<div class="logo backdrop">
-	<FlamingLogo helperBackdrop />
-</div>
-<div class="logo blend">
+<a href={resolve('/')} class={['logo', { expanded: (scrollY.current ?? 0) < 100 }]}>
 	<FlamingLogo />
-</div>
+</a>
 
 <nav>
-	<a href="/#show">
-		<Icon icon="show" --height="40px" />
+	<a href="#show">
+		{#if showNavIcons}<Icon icon="show" --height="40px" />{/if}
 		Show
 	</a>
-	<a href="/#">
-		<Icon icon="gallery" --height="40px" />
+	<a href="#gallery">
+		{#if showNavIcons}<Icon icon="gallery" --height="40px" />{/if}
 		Galerie
 	</a>
-	<a href="/#">
-		<Icon icon="bookings" --height="40px" />
+	<a href="#bookings">
+		{#if showNavIcons}<Icon icon="bookings" --height="40px" />{/if}
 		Buchen
 	</a>
-	<a href="/#">
-		<Icon icon="about-us" --height="40px" />
+	<a href="#about-us">
+		{#if showNavIcons}<Icon icon="about-us" --height="40px" />{/if}
 		&Uuml;ber uns
+	</a>
+	<a href="#impressum">
+		{#if showNavIcons}<Icon icon="impressum" --height="40px" />{/if}
+		Impressum
 	</a>
 </nav>
 
-<section class="content">
+<main>
 	{@render children()}
-</section>
+</main>
 
 <Sparks />
 
@@ -60,11 +58,17 @@
 		--bg1: var(--clr1);
 		--fg1: var(--clr5);
 		--fg0: #facf61;
+
+		@font-face {
+			font-family: 'Diogenes';
+			src:
+				url('/fonts/diogenes.woff2') format('woff2'),
+				url('/fonts/diogenes.ttf') format('truetype');
+		}
 	}
 
 	:global(html) {
 		scroll-snap-type: y proximity;
-		// scroll-behavior: smooth;
 	}
 
 	:global(body) {
@@ -72,13 +76,12 @@
 		padding: 0;
 		font-family: 'Open Sans Variable', sans-serif;
 		font-family: 'Recursive Variable', sans-serif;
+		color: white;
 		background-color: var(--bg0);
-		// background-image: url('/hero1.webp');
-		// background-size: cover;
-		// background-attachment: fixed;
 	}
 
 	nav {
+		transition: opacity 0.625s ease-in-out;
 		position: fixed;
 		top: 20px;
 		right: 20px;
@@ -87,6 +90,8 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
+		font-family: 'Diogenes';
+		font-variant: small-caps;
 		gap: 35px;
 		filter: drop-shadow(0 0 2px #10050977) drop-shadow(0 0 2px #100509aa)
 			drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
@@ -99,15 +104,21 @@
 			gap: 5px;
 			text-decoration: none;
 			color: var(--fg1);
-			font-size: 1rem;
+			font-size: 1.2rem;
 			transition: color 0.5s ease-in-out;
 			&:hover {
 				color: var(--fg0);
 			}
 		}
+
+		@media screen and (max-width: 768px) {
+			opacity: 0;
+			user-select: none;
+			pointer-events: none;
+		}
 	}
 
-	section.content {
+	main {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -115,43 +126,32 @@
 	}
 
 	.logo {
-		width: 350px;
-		position: fixed;
-		top: 15px;
-		left: 30px;
-		z-index: 5;
-		&.blend {
-			mix-blend-mode: screen;
-		}
-		&.backdrop {
-			filter: drop-shadow(0 0 5px #10050977) drop-shadow(0 0 2px #100509aa)
-				drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
-		}
-	}
-
-	.logo-old {
+		opacity: 0;
+		width: 150px;
 		position: fixed;
 		z-index: 5;
-		fill: #cccc33;
-		width: 140px;
-		inset: 10px 20px auto auto;
-		transition: opacity 0.625s ease-in-out;
-		filter: drop-shadow(0 0 2px #10050977) drop-shadow(0 0 2px #100509aa)
-			drop-shadow(0 0 2px #100509cc) drop-shadow(0 0 1px #100509) drop-shadow(0 0 1px #100509);
-		opacity: 1;
-		&.shrinkNav {
-			opacity: 0;
-			// width: 80px;
-			// inset: 5px 10px auto auto;
+		inset: 10px;
+		transition: all 0.5s ease-in-out;
+		user-select: none;
+		height: 0;
+
+		&.expanded {
+			opacity: 1;
+			width: 150px;
+
+			@media screen and (min-width: 768px) {
+				inset: 12px 24px;
+				width: 250px;
+			}
+
+			@media screen and (min-width: 1280px) {
+				inset: 20px 30px;
+				width: 350px;
+			}
 		}
 
-		@media screen and (min-width: 425px) {
-			inset: 50px;
-		}
-
-		@media screen and (min-width: 1024px) {
-			inset: 50px 75px;
-			width: 350px;
+		@media screen and (min-width: 768px) {
+			opacity: 1;
 		}
 	}
 </style>
